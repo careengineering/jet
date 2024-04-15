@@ -1,0 +1,26 @@
+- Projeyi aç
+
+- Terminale
+    - pip install django
+    - django-admin startproject jetbul
+    - cd jetbul
+    - python manage.py runserver
+
+- Websayfası çalışır
+    - http://127.0.0.1:8000/admin
+    - kullanıcı şifre yok
+
+- Terminale
+    - python manage.py migrate
+    - python manage.py createsuperuser
+    - admin / careengineeringx@gmail.com / 123456
+
+- jetbul/jetbul/settings.py dosyası language kısmına gel
+    - LANGUAGE_CODE = "tr-tr"
+
+- admin panalede
+    - muhasebe grubu yarat ve can view user yetkisi ekle
+    - kullanıcı ekle / mehmet / Mehmet..123456 / görev durumu seç muhasebe yetkisi ver
+
+-terminal
+    - python manage.py startapp ucus
