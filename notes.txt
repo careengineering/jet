@@ -24,3 +24,27 @@
 
 -terminal
     - python manage.py startapp ucus
+
+- ucus models oluştur / admin.py airport tanıt
+    - from.models import Airport
+    - admin.site.register(Airport)
+
+
+- jetbul/jetbul/settings.py installed app ucus ekle
+
+- python manage.py makemigrations
+- python manage.py migrate
+
+- konsolda havalimanı bilgilerini göstermek için
+    -   def __str__(self):
+        return self.isim #listede object yerine isim görünmesi için
+
+- konsolda sadece isim değil diğer bilgileri görmek için
+    - class AirportAdmin(admin.ModelAdmin):
+           list_display = ("isim","ulke","sehir","kod") # listede gösterilece
+           search_fields = ("ulke","sehir") # arama özelliği
+           list_filter = ("ulke", "sehir") # filtreleme özelliği
+
+    - değiştir admin.site.register(Airport,AirportAdmin)
+
+
