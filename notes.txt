@@ -23,7 +23,7 @@
     - kullanıcı ekle / mehmet / Mehmet..123456 / görev durumu seç muhasebe yetkisi ver
 
 -terminal
-    - python manage.py startapp ucus
+    - bl
 
 - ucus models oluştur / admin.py airport tanıt
     - from.models import Airport
@@ -47,4 +47,52 @@
 
     - değiştir admin.site.register(Airport,AirportAdmin)
 
+- pip install pillow
+- jetbul/settings.py
+    - import os
+    - MEDIA_URL = '/media/'
+    - MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+- jetbul/urls.py
+    - from django.conf import settings
+    - from django.conf.urls.static import static
+   - if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+- ucak bilgilerini ekledikten sonra
+    - python manage.py makemigrations
+    - python manage.py migrate
+
+ - rota ekle
+    class Rota(models.Model):
+    isim = models.CharField(max_length=120)
+    kalkis = models.ForeignKey(Airport,on_delete=models.CASCADE, related_name="Kalkış")
+    varis = models.ForeignKey(Airport,on_delete=models.CASCADE, related_name="Varış")
+    ucak = models.ForeignKey(Ucak,on_delete=models.CASCADE)
+
+    sonra migrate et
+
+ - multilanguage berkay şen po dosyası
+
+- rotaplan ekle
+    - class RotaPlan(models.Model):
+    rota = models.ForeignKey(Rota,on_delete=models.CASCADE, related_name="Rota")
+    tarih = models.DateField()
+    ucret = models.FloatField()
+    vale = models.BooleanField()
+    olusturulma_tarihi=models.DateTimeField(auto_now_add=True) #otomatik tarih alır
+
+    class Meta:
+        verbose_name="Planlanmış Uçuş"
+        verbose_name_plural="Planlanmış Uçuşlar"
+
+    def __str__(self):
+        return self.rota+" "+str(self.tarih)
+
+
+settings.py TIME_ZONE = "Europe/Istanbul"
+
+
+
+
+pip freeze>requirements.txt diyerek requirements dosya oluşturur
