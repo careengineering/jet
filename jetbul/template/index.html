@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block slide %}
+
+<div class="row">
+    <div class="col-md-12 p-0">
+        <img width="100%" src="https://assets.paramountbusinessjets.com/media/private-jet-charter-hero-bg2.jpg" alt="">
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block icerik %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-dark text-center py-5">Özel Uçuşlar</h2>
+            {% for rota in rotalar %}
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4 rotaucakresim">
+                        <img src="media/{{ rota.ucak.resim }}" class="img-fluid rounded-start" alt="...">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title bg-dark text-white rounded p-3 mb-4">{{ rota.isim }}</h3>
+                            <p class="card-text">
+                                <button
+                                        class="btn btn-light btn-xl"><i class="fa-solid fa-plane-departure"></i> {{ rota.kalkis }}
+                                </button>
+                                <button
+                                        class="btn btn-light btn-xl mx-3"><i class="fa-solid fa-plane-arrival"></i>
+                                    {{ rota.varis }}
+                                </button>
+                            </p>
+
+                            <div class="rotabutonlar pt-3">
+                                <a href="" class="btn btn-warning"><i class="fa-regular fa-calendar"></i> Tarihleri
+                                    İncele</a>
+                                <a href="" class="btn btn-outline-dark mx-3"><i class="fa-solid fa-plane"></i> Uçağı
+                                    İncele</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-dark text-center py-5">Havalimanları</h2>
+        </div>
+
+        {% for airport in airports %}
+
+        <div class="col-md-3 mb-3">
+            <a href="airport/{{airport.id}}">
+                <div class="card bg-light py-5 text-center">
+                    <h5>{{airport.isim}}-{{airport.kod}}</h5>
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

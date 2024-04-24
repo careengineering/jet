@@ -1,53 +1,74 @@
-- Projeyi aç
+- Django Projesi 
 
-- Terminale
-    - pip install django
-    - django-admin startproject jetbul
-    - cd jetbul
-    - python manage.py runserver
+- Yeni proje aç
+    % pip install django
+    % django-admin startproject jetbul
+    % cd jetbul
+    % python manage.py runserver (proje çalıştırma)
 
 - Websayfası çalışır
     - http://127.0.0.1:8000/admin
     - kullanıcı şifre yok
 
-- Terminale
-    - python manage.py migrate
-    - python manage.py createsuperuser
-    - admin / careengineeringx@gmail.com / 123456
+- Admin panel için super user oluşturma
+    % python manage.py migrate
+    % python manage.py createsuperuser
+    % admin / careengineeringx@gmail.com / 123456 / y
 
-- jetbul/jetbul/settings.py dosyası language kısmına gel
+- ana app içerisindeki ../settings.py
     - LANGUAGE_CODE = "tr-tr"
+    - TIME_ZONE = "Europe/Istanbul"
 
-- admin panalede
+- admin panelde
     - muhasebe grubu yarat ve can view user yetkisi ekle
     - kullanıcı ekle / mehmet / Mehmet..123456 / görev durumu seç muhasebe yetkisi ver
 
--terminal
-    - bl
+- yeni app oluştur
+    % python manage.py startapp ucus
 
-- ucus models oluştur / admin.py airport tanıt
-    - from.models import Airport
-    - admin.site.register(Airport)
+- ana app içerisindeki ../settings.py
+    - INSTALLED_APPS = [
+    "ucus",
+    .....
 
+- ucus/models.py class ve özelliklerini oluştur.
+    - class Havalimanı(models.Model):
+        isim = models.CharField(max_length=200)
+        ulke = models.ForeignKey(Ulke,on_delete=models.CASCADE,related_name="Ülke")
+        kapasite = models.IntegerField()
+        hiz = models.FloatField()
+        detay = models.TextField()
 
-- jetbul/jetbul/settings.py installed app ucus ekle
+        ...
 
-- python manage.py makemigrations
-- python manage.py migrate
+        def __str__(self):
+            return self.isim
+
+        class Meta:
+            verbose_name="...."
+            verbose_name_plural = "....."
+
+- uçuş/admin.py tanıt
+    from.models import Havalimanı
+    admin.site.register(Havalimanı)
+
+- oluşturulan class göre veritabanı güncelleme
+    % python manage.py makemigrations
+    % python manage.py migrate
 
 - konsolda havalimanı bilgilerini göstermek için
     -   def __str__(self):
-        return self.isim #listede object yerine isim görünmesi için
+            return self.isim #listede object yerine isim görünmesi için
 
-- konsolda sadece isim değil diğer bilgileri görmek için
+- konsolda sadece isim değil diğer bilgileri görmek için; admin.py
     - class AirportAdmin(admin.ModelAdmin):
-           list_display = ("isim","ulke","sehir","kod") # listede gösterilece
+           list_display = ("isim","ulke","sehir","kod") # listede gösterilir
            search_fields = ("ulke","sehir") # arama özelliği
            list_filter = ("ulke", "sehir") # filtreleme özelliği
 
-    - değiştir admin.site.register(Airport,AirportAdmin)
+    - admin.site.register(Airport,AirportAdmin)
 
-- pip install pillow
+- pip install pillow # imaj kütüphanesi
 - jetbul/settings.py
     - import os
     - MEDIA_URL = '/media/'
@@ -92,7 +113,6 @@
 
 settings.py TIME_ZONE = "Europe/Istanbul"
 
+% pip freeze>requirements.txt diyerek requirements dosya oluşturur
 
-
-
-pip freeze>requirements.txt diyerek requirements dosya oluşturur
+modeli değiştirirken null=True ve blank=True yazmazsan hata verir

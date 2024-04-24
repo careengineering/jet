@@ -6,6 +6,7 @@ class Airport(models.Model):
     sehir = models.CharField(max_length=50)
     ulke = models.CharField(max_length=80)
     kod = models.CharField(max_length=8)
+    aciklama = models.TextField(null=True,blank=True) # null veritabanı için blank form için
 
     def __str__(self):
         return self.isim #listede object yerine isim görünmesi için
