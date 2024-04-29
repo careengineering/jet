@@ -7,11 +7,32 @@
     <div class="row">
 
         <div class="col-md-12 p-2 bg-light mt-4 rounded px-4">
-            <h1 class="text-dark p-0 m-0 ">{{ airport.isim }}</h1>
+            <h1 class="text-dark p-0 m-0 ">{{ rota.isim }}</h1>
         </div>
 
-        <div class="bg-dark text-white p-5 fs-5 mt-5 rounded">
-            <p>{{ airport.aciklama }}</p>
+        <div class="p-5 fs-5 mt-5 rounded">
+            {% for plan in planlar %}
+            <div class="">
+                <div class="row g-0 border border-3 border-dark rounded mb-3">
+                    <div class="col-md-4">
+                        <p class="p-3 bg-light text-dark m-0">{{ plan.rota }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="p-3 bg-dark text-center text-white m-0">{{ plan.tarih }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="p-3 bg-light text-dark text-center m-0">{{ plan.ucret }} TL</p>
+                    </div>
+                    <div class="col-md-3">
+                        <a style="text-decoration:none;"
+                           class="d-block p-3 bg-success text-white text-center m-0"
+                           href="https://wa.me/905326882026?text={{plan.rota}} ve {{plan.tarih}} için randevu
+                           istiyorum">Whatsapp rezervasyon</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
         </div>
 
     </div>

@@ -23,7 +23,9 @@ from ucus import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',views.home),
-    path('airport/<int:airport_id>/',views.Havalimani, name='Havalimanı Detay')
+    path('airport/<int:airport_id>/',views.Havalimani, name='Havalimanı Detay'),
+    path('ucak/<int:ucak_id>/',views.Ucaklar, name='Ucak Detay'),
+    path('takvim/<int:rota_id>/',views.Takvim,name="Uçuş Takvimi"),
 ]
 
 if settings.DEBUG:
