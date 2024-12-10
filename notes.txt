@@ -13,7 +13,6 @@
 - Admin panel için super user oluşturma
     % python manage.py migrate
     % python manage.py createsuperuser
-    % admin / careengineeringx@gmail.com / 123456 / y
 
 - ana app içerisindeki ../settings.py
     - LANGUAGE_CODE = "tr-tr"
